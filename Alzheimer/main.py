@@ -1,3 +1,4 @@
+
 import os
 
 def renombrar_carpetas(ruta_proyecto):
@@ -10,8 +11,8 @@ def renombrar_carpetas(ruta_proyecto):
         archivos = [nombre_archivo for nombre_archivo in os.listdir(ruta_carpeta) if os.path.isfile(os.path.join(ruta_carpeta, nombre_archivo))]
 
         # Enumera los archivos y renómbralos
-        for indice, nombre_archivo in enumerate(archivos, start=1):
-            nuevo_nombre = f"{carpeta}_{indice}"
+        for indice, nombre_archivo in enumerate(archivos, start=0):
+            nuevo_nombre = f"{indice}.jpg"
             ruta_antigua = os.path.join(ruta_carpeta, nombre_archivo)
             ruta_nueva = os.path.join(ruta_carpeta, nuevo_nombre)
 
@@ -22,7 +23,6 @@ def renombrar_carpetas(ruta_proyecto):
 
 if __name__ == "__main__":
     # Ruta del proyecto (cambia esto a la ruta de tu proyecto)
-    ruta_proyecto = "C:/Users/fabia/OneDrive/Documentos/Universidad/SEMESTRE 10/Inteligentes/Alzheimer/Resources/data/train"
+    ruta_proyecto = "C:/Users/carlo/Desktop/proyecto-alzheimer/Alzheimer/Resources/data/val"
 
-    # Llama a la función para renombrar las carpetas
     renombrar_carpetas(ruta_proyecto)
