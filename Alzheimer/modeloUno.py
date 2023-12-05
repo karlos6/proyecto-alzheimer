@@ -17,14 +17,14 @@ formaImagen=(ancho,alto,numeroCanales)
 nombreCategorias= ['MildDemented','ModerateDemented','NonDemented','VeryMildDemented']
 
 #configuracion de las imagenes, en este caso 60 de entrenamiento y 20 de pruebas (para el número de categorías)
-cantidaDatosEntrenamiento=[8959,6463,9599,8959]
-cantidaDatosPruebas=[8096,64,3200,2240]
+cantidaDatosEntrenamiento=[7168,5171,7680,7168]
+cantidaDatosPruebas=[8960,6464,9600,8960]
 
 # cantidaDatosEntrenamiento=[3000,3000,3000,3000] 
 # cantidaDatosPruebas=[4000,4000,4000,4000]
 
 #Cargar las imágenes
-imagenes, probabilidades= cargaData.cargar_datos("Resources/data/train/",nombreCategorias,cantidaDatosEntrenamiento,ancho,alto)
+imagenes, probabilidades= cargaData.cargar_datos("Alzheimer/Resources/data/train/",nombreCategorias,cantidaDatosEntrenamiento,ancho,alto)
 
 model=Sequential() # porque es una capa despúes de la otra
 #Capa entrada
@@ -64,12 +64,12 @@ model.compile(optimizer="adam",loss="categorical_crossentropy", metrics=["accura
 model.fit(x=imagenes,y=probabilidades,epochs=20,batch_size=800)
 
 #Prueba del modelo
-imagenesPrueba,probabilidadesPrueba= cargaData.cargar_datos_pruebas("Resources/data/val/",nombreCategorias,cantidaDatosPruebas, cantidaDatosEntrenamiento,ancho,alto)
+imagenesPrueba,probabilidadesPrueba= cargaData.cargar_datos_pruebas("Alzheimer/Resources/data/val/",nombreCategorias,cantidaDatosPruebas, cantidaDatosEntrenamiento,ancho,alto)
 resultados=model.evaluate(x=imagenesPrueba,y=probabilidadesPrueba)
 print("Accuracy=",resultados[1])
 
 # Guardar modelo
-ruta="models/modeloUno.h5"
+ruta="Alzheimer/Resources/models/modeloUno.h5"
 model.save(ruta)
 # Informe de estructura de la red
 model.summary()
